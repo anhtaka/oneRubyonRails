@@ -4,4 +4,6 @@ class UsersController < ApplicationController
         @hello = 'Hello,World@'
         render template: 'users/index'
     end
+    def new
+    end
 end
