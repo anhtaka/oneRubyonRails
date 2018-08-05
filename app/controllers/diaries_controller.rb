@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DiariesController < ApplicationController
-  before_action :set_diary, only: [:show, :edit, :update, :destroy]
+  before_action :set_diary, only: %i[show edit update destroy]
 
   # GET /diaries
   # GET /diaries.json
@@ -9,8 +11,7 @@ class DiariesController < ApplicationController
 
   # GET /diaries/1
   # GET /diaries/1.json
-  def show
-  end
+  def show; end
 
   # GET /diaries/new
   def new
@@ -18,8 +19,7 @@ class DiariesController < ApplicationController
   end
 
   # GET /diaries/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /diaries
   # POST /diaries.json
@@ -62,13 +62,14 @@ class DiariesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_diary
-      @diary = Diary.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def diary_params
-      params.require(:diary).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_diary
+    @diary = Diary.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def diary_params
+    params.require(:diary).permit(:title, :body)
+  end
 end
