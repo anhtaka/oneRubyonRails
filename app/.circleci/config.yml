@@ -71,4 +71,18 @@ jobs:
             gem update bundler -N
             gem install circleci-bundle-update-pr -N
             circleci-bundle-update-pr ${BUNDLE_UPDATE_GITHUB_USERNAME} ${BUNDLE_UPDATE_GITHUB_EMAIL}
-            
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_and_test
+  auto_bundle_update:
+    triggers:
+      - schedule:
+          cron: "00 1 * * 1" # 毎週月曜日
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - bundle_update
